@@ -1,5 +1,5 @@
 const app = require('../src/app');
 
 app.listen(3033, () => {
-  console.log('API rodando com sucesso');
+  console.log('API running successfully');
 });
