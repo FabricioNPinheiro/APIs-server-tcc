@@ -1,8 +1,8 @@
-const ProductModel = require('../models/product');
+const repository = require('../repositories/product-repository');
 
 exports.createNewProduct = async (req, res) => {
   try {
-    const product = await ProductModel.create(req.body);
+    const product = await repository.createNewProduct(req.body);
 
     res.status(201).json(product);
   } catch (error) {
@@ -12,7 +12,7 @@ exports.createNewProduct = async (req, res) => {
 
 exports.findAllProducts = async (req, res) => {
   try {
-    const products = await ProductModel.find({}, 'title description price slug tags');
+    const products = await repository.findAllProducts();
 
     return res.status(200).json(products);
   } catch (error) {
@@ -23,7 +23,7 @@ exports.findAllProducts = async (req, res) => {
 exports.findProductById = async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await ProductModel.findById(id);
+    const product = await repository.findProductById(id);
 
     return res.status(200).json(product);
   } catch (error) {
@@ -35,10 +35,7 @@ exports.findProductBySlug = async (req, res) => {
   const { slug } = req.params;
 
   try {
-    const product = await ProductModel.findOne({
-      slug,
-      active: true,
-    }, 'title slug description price slug tags');
+    const product = await repository.findProductBySlug(slug);
 
     return res.status(200).json(product);
   } catch (error) {
@@ -48,12 +45,8 @@ exports.findProductBySlug = async (req, res) => {
 
 exports.findProductByTag = async (req, res) => {
   const { tag } = req.params;
-
   try {
-    const product = await ProductModel.findOne({
-      tags: tag,
-      active: true,
-    }, 'title slug description price slug tags');
+    const product = await repository.findProductByTag(tag);
 
     return res.status(200).json(product);
   } catch (error) {
@@ -64,8 +57,7 @@ exports.findProductByTag = async (req, res) => {
 exports.updateProductFieldById = async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await ProductModel.findByIdAndUpdate(id, req.body, { new: true });
-
+    const product = await repository.updateProductFieldById(id, req.body);
     return res.status(200).json(product);
   } catch (error) {
     return res.status(500).send(error.message);
@@ -74,9 +66,8 @@ exports.updateProductFieldById = async (req, res) => {
 
 exports.deleteProductById = async (req, res) => {
   const { id } = req.params;
-
   try {
-    const product = await ProductModel.findByIdAndRemove(id);
+    const product = await repository.deleteProductById(id);
 
     return res.status(200).json(product);
   } catch (error) {
