@@ -15,10 +15,6 @@ app.use(cors());
 dotenv.config();
 connectToDatabase();
 
-// Carregando os Models
-// eslint-disable-next-line no-unused-vars
-const Product = require('./models/product');
-
 // Carregando Rotas
 const indexRoute = require('./routes/index-route');
 const productRoute = require('./routes/product-route');
