@@ -2,9 +2,9 @@ const repository = require('../repositories/product-repository');
 
 exports.createNewProduct = async (req, res) => {
   try {
-    const product = await repository.createNewProduct(req.body);
+    const data = await repository.createNewProduct(req.body);
 
-    res.status(201).json(product);
+    res.status(201).json(data);
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -12,9 +12,9 @@ exports.createNewProduct = async (req, res) => {
 
 exports.findAllProducts = async (req, res) => {
   try {
-    const products = await repository.findAllProducts();
+    const data = await repository.findAllProducts();
 
-    return res.status(200).json(products);
+    return res.status(200).json(data);
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -23,9 +23,9 @@ exports.findAllProducts = async (req, res) => {
 exports.findProductById = async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await repository.findProductById(id);
+    const data = await repository.findProductById(id);
 
-    return res.status(200).json(product);
+    return res.status(200).json(data);
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -35,9 +35,9 @@ exports.findProductBySlug = async (req, res) => {
   const { slug } = req.params;
 
   try {
-    const product = await repository.findProductBySlug(slug);
+    const data = await repository.findProductBySlug(slug);
 
-    return res.status(200).json(product);
+    return res.status(200).json(data);
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -46,9 +46,9 @@ exports.findProductBySlug = async (req, res) => {
 exports.findProductByTag = async (req, res) => {
   const { tag } = req.params;
   try {
-    const product = await repository.findProductByTag(tag);
+    const data = await repository.findProductByTag(tag);
 
-    return res.status(200).json(product);
+    return res.status(200).json(data);
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -57,8 +57,8 @@ exports.findProductByTag = async (req, res) => {
 exports.updateProductFieldById = async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await repository.updateProductFieldById(id, req.body);
-    return res.status(200).json(product);
+    const data = await repository.updateProductFieldById(id, req.body);
+    return res.status(200).json(data);
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -67,9 +67,9 @@ exports.updateProductFieldById = async (req, res) => {
 exports.deleteProductById = async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await repository.deleteProductById(id);
+    const data = await repository.deleteProductById(id);
 
-    return res.status(200).json(product);
+    return res.status(200).json(data);
   } catch (error) {
     return res.status(500).send(error.message);
   }
