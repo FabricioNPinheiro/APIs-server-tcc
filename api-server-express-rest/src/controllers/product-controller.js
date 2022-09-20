@@ -12,7 +12,7 @@ exports.createNewProduct = async (req, res) => {
 
 exports.findAllProducts = async (req, res) => {
   try {
-    const products = await ProductModel.find({}, 'title slug description price tags');
+    const products = await ProductModel.find({}, 'title description price slug tags');
 
     return res.status(200).json(products);
   } catch (error) {
@@ -24,6 +24,36 @@ exports.findProductById = async (req, res) => {
   const { id } = req.params;
   try {
     const product = await ProductModel.findById(id);
+
+    return res.status(200).json(product);
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+exports.findProductBySlug = async (req, res) => {
+  const { slug } = req.params;
+
+  try {
+    const product = await ProductModel.findOne({
+      slug,
+      active: true,
+    }, 'title slug description price slug tags');
+
+    return res.status(200).json(product);
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+exports.findProductByTag = async (req, res) => {
+  const { tag } = req.params;
+
+  try {
+    const product = await ProductModel.findOne({
+      tags: tag,
+      active: true,
+    }, 'title slug description price slug tags');
 
     return res.status(200).json(product);
   } catch (error) {
