@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const OrderSchema = new Schema({
   customer: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'CustomerModel',
+    ref: 'Customer',
     required: true,
   },
   number: {
@@ -35,11 +35,11 @@ const OrderSchema = new Schema({
     },
     product: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'ProductModel',
+      ref: 'Product',
     },
   }],
 });
 
-const OrderModel = mongoose.model('Product', OrderSchema);
+const OrderModel = mongoose.model('Order', OrderSchema);
 
 module.exports = OrderModel;
