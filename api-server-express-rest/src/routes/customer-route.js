@@ -6,5 +6,6 @@ const customerController = require('../controllers/customer-controller');
 
 // POST
 router.post('/', customerController.createNewCustomer);
+router.post('/authenticate', customerController.authenticate);
 
 module.exports = router;
