@@ -1,4 +1,4 @@
-const OrderModel = require('../models/order');
+const OrderModel = require('../models/Order');
 
 exports.createNewOrder = async (data) => {
   const response = await OrderModel.create(data);

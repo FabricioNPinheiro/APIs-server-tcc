@@ -1,5 +1,5 @@
 const guid = require('guid');
-const repository = require('../repositories/order-repository');
+const repository = require('../repositories/orderRepository');
 const authService = require('../services/auth.service');
 
 exports.createNewOrder = async (req, res) => {

@@ -1,4 +1,4 @@
-const CustomerModel = require('../models/customer');
+const CustomerModel = require('../models/Customer');
 
 exports.createNewCustomer = async (data) => {
   const response = await CustomerModel.create(data);
@@ -11,5 +11,10 @@ exports.authenticate = async (data) => {
     email: data.email,
     password: data.password,
   });
+  return response;
+};
+
+exports.getById = async (id) => {
+  const response = await CustomerModel.findById(id);
   return response;
 };
