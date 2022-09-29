@@ -1,6 +1,6 @@
 const md5 = require('md5');
 const repository = require('../repositories/customerRepository');
-const emailService = require('../services/email.service');
+/* const emailService = require('../services/email.service'); */
 const authService = require('../services/auth.service');
 
 exports.createNewCustomer = async (req, res) => {
@@ -10,13 +10,14 @@ exports.createNewCustomer = async (req, res) => {
       name,
       email,
       password: md5(password),
+      roles: ['user'],
     });
 
-    await emailService.send(
+    /* await emailService.send(
       email,
       'Bem vindo a Node Store',
       process.env.EMAIL_TMPL.replace('{0}', name),
-    );
+    ); */
 
     res.status(201).json(data);
   } catch (error) {
@@ -42,6 +43,7 @@ exports.authenticate = async (req, res) => {
       id: customer.id,
       email: customer.email,
       name: customer.name,
+      roles: customer.roles,
     });
 
     res.status(201).send({
@@ -73,6 +75,7 @@ exports.refreshToken = async (req, res) => {
       id: customer.id,
       email: customer.email,
       name: customer.name,
+      roles: customer.roles,
     });
 
     res.status(201).send({
