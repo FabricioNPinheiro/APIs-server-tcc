@@ -7,6 +7,7 @@ exports.createNewCustomer = async (data) => {
 
 exports.authenticate = async (data) => {
   const response = await CustomerModel.findOne({
+    id: data.id,
     email: data.email,
     password: data.password,
   });

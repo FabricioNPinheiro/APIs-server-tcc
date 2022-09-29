@@ -1,10 +1,15 @@
 const guid = require('guid');
 const repository = require('../repositories/order-repository');
+const authService = require('../services/auth.service');
 
 exports.createNewOrder = async (req, res) => {
   try {
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token);
+
+    console.log('Data: ', data);
     await repository.createNewOrder({
-      customer: req.body.customer,
+      customer: data.id,
       number: guid.raw().substring(0, 6),
       items: req.body.items,
     });
