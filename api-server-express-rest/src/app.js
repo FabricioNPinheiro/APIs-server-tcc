@@ -10,10 +10,19 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '5mb' }));
 app.use(express.json());
 app.use(cors());
 dotenv.config();
 connectToDatabase();
+
+// CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+  next();
+});
 
 // Carregando Rotas
 const indexRoute = require('./routes/index-route');
