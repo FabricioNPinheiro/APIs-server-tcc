@@ -1,0 +1,25 @@
+type Customer {
+  _id: ID!
+  name: String!
+  email: String!
+  password: String!
+  active: Boolean!
+}
+
+input CustomerInput {
+  name: String!
+  email: String!
+  password: String!
+  active: Boolean!
+}
+
+type Query {
+  customers: [Customer!]!
+  customer(id: ID!): Customer!
+}
+
+type Mutation {
+  createCustomer(data: CustomerInput!): Customer!
+  updateCustomer(id: ID!, data: CustomerInput!): Customer!
+  deleteCustomer(id: ID!): Boolean
+}
