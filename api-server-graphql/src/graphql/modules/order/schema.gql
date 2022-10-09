@@ -1,15 +1,10 @@
-type OrderProduct {
-  quantity: Int!
-  item: Product!
-}
-
 type Order {
   _id: ID!
   customer: Customer!
   number: String!
   status: String!
   totalOrder: Float!
-  items: [OrderProduct!]
+  items: [Product!]
 }
 
 input OrderInput {
@@ -17,16 +12,16 @@ input OrderInput {
   number: String!
   status: String!
   totalOrder: Float!
-  items: ID!
+  items: [ID!]
 }
 
 type Query {
-  order: [Order!]!
-  orders(id: ID!): Order!
+  orders: [Order!]!
+  order(id: ID!): Order!
 }
 
 type Mutation {
   createOrder(data: OrderInput!): Order!
   updateOrder(id: ID!, data: OrderInput!): Order!
-  deleteOrder(id: ID!, data: OrderInput!): Order!
+  deleteOrder(id: ID!): Boolean
 }

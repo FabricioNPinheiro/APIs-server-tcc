@@ -31,7 +31,6 @@ const OrderSchema = new Schema({
     {
       quantity: {
         type: Number,
-        required: true,
         default: 1,
       },
       product: {
