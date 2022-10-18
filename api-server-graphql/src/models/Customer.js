@@ -20,6 +20,14 @@ const CustomerSchema = new Schema({
     required: true,
     default: true,
   },
+  roles: [
+    {
+      type: String,
+      required: true,
+      enum: ["user", "admin", "manager", "attendant"],
+      default: "user",
+    },
+  ],
 });
 
 export default mongoose.model("Customer", CustomerSchema);
