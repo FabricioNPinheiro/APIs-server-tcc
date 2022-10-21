@@ -4,6 +4,14 @@ export default {
   Query: {
     products: async () => await Product.find(),
     product: async (_, { id }) => await Product.findById(id),
+    productBySlug: async (_, { slug }) =>
+      await Product.findOne({
+        slug: slug,
+      }),
+    productsByTag: async (_, { tag }) =>
+      await Product.find({
+        tags: tag,
+      }),
   },
   Mutation: {
     createProduct: async (_, { data }) => await Product.create(data),

@@ -5,6 +5,7 @@ type Product {
   description: String!
   price: Float!
   active: Boolean!
+  tags: [String!]
 }
 
 input ProductInput {
@@ -13,11 +14,14 @@ input ProductInput {
   description: String!
   price: Float!
   active: Boolean!
+  tags: [String!]
 }
 
 type Query {
   products: [Product!]!
   product(id: ID!): Product!
+  productBySlug(slug: String!): Product!
+  productsByTag(tag: String!): [Product!]!
 }
 
 type Mutation {

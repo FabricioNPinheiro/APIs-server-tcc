@@ -4,6 +4,7 @@ type Customer {
   email: String!
   password: String!
   active: Boolean!
+  roles: [String!]!
 }
 
 input CustomerInput {
@@ -11,11 +12,15 @@ input CustomerInput {
   email: String!
   password: String!
   active: Boolean!
+  roles: [String!]!
 }
 
 type Query {
   customers: [Customer!]!
   customer(id: ID!): Customer!
+  customerByEmail(email: String!): Customer!
+  customersActive: [Customer!]!
+  customersByRoles(role: String!): [Customer!]!
 }
 
 type Mutation {

@@ -18,6 +18,8 @@ input OrderInput {
 type Query {
   orders: [Order!]!
   order(id: ID!): Order!
+  ordersByStatus(status: String!): [Order!]!
+  orderByNumber(number: String!): Order!
 }
 
 type Mutation {

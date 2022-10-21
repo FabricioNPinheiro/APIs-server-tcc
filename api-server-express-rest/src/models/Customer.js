@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
@@ -15,14 +15,20 @@ const CustomerSchema = new Schema({
     type: String,
     required: true,
   },
-  roles: [{
-    type: String,
+  active: {
+    type: Boolean,
     required: true,
-    enum: ['user', 'admin'],
-    default: 'user',
-  }],
+  },
+  roles: [
+    {
+      type: String,
+      required: true,
+      enum: ["user", "admin", "manager", "attendant"],
+      default: "user",
+    },
+  ],
 });
 
-const CustomerModel = mongoose.model('Customer', CustomerSchema);
+const CustomerModel = mongoose.model("Customer", CustomerSchema);
 
 module.exports = CustomerModel;

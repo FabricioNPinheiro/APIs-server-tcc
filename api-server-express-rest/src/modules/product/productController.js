@@ -1,4 +1,4 @@
-const repository = require('../repositories/productRepository');
+const repository = require("./productRepository");
 
 exports.createNewProduct = async (req, res) => {
   try {
