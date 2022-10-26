@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  mongodb:
+    container_name: 'database-mongo'
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=qwe123
+    volumes:
+      - ./mongo_data:/var/lib/mongodb/db
+    ports:
+      - 27017:27017
+    restart: always
+    networks:
+      - api-server
+
+networks:
+  api-server:
+    driver: bridge

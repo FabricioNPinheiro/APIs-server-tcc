@@ -29,15 +29,9 @@ const OrderSchema = new Schema({
   },
   items: [
     {
-      quantity: {
-        type: Number,
-        default: 1,
-      },
-      product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-        required: true,
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+      required: true,
     },
   ],
 });
