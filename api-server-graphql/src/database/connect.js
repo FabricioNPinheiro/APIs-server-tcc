@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectToDatabase = async () => {
   await mongoose.connect(
-    `mongodb://user:qwe123@localhost:27017/ecommerce?authSource=admin&directConnection=true`,
+    `mongodb://localhost:27017/ecommerce`,
     (error) => {
       if (error) {
         return console.log(
