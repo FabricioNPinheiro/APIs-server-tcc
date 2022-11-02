@@ -1,13 +1,13 @@
 const repository = require("./customerRepository");
 
 exports.createNewCustomer = async (req, res) => {
-  const { name, email, password, roles } = req.body;
+  const { name, email, active, password, roles } = req.body;
   try {
     const data = await repository.createNewCustomer({
       name,
       email,
       password: password,
-      active: false,
+      active: active,
       roles: roles,
     });
 

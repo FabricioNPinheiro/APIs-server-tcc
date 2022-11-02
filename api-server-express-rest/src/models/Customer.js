@@ -18,6 +18,7 @@ const CustomerSchema = new Schema({
   active: {
     type: Boolean,
     required: true,
+    default: true,
   },
   roles: [
     {

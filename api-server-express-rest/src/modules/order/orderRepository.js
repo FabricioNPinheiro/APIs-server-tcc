@@ -7,8 +7,8 @@ exports.createNewOrder = async (data) => {
 
 exports.findAllOrders = async () => {
   const response = await OrderModel.find({}, "number status customer items")
-    .populate("customer", "name")
-    .populate("items.product", "title");
+    .populate("customer")
+    .populate("items");
   return response;
 };
 
@@ -17,8 +17,8 @@ exports.findById = async (customerId) => {
     customerId,
     "number status customer items"
   )
-    .populate("customer", "name")
-    .populate("items.product", "title");
+    .populate("customer")
+    .populate("items");
   return response;
 };
 
@@ -29,8 +29,8 @@ exports.findAllByStatus = async (status) => {
     },
     "number status customer items"
   )
-    .populate("customer", "name")
-    .populate("items.product", "title");
+    .populate("customer")
+    .populate("items");
   return response;
 };
 
@@ -41,8 +41,8 @@ exports.findOneByNumber = async (number) => {
     },
     "number status customer items"
   )
-    .populate("customer", "name")
-    .populate("items.product", "title");
+    .populate("customer")
+    .populate("items");
 
   return response;
 };

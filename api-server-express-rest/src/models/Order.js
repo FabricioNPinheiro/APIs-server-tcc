@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
 const OrderSchema = new Schema({
   customer: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Customer',
+    ref: "Customer",
     required: true,
   },
   number: {
@@ -20,26 +20,22 @@ const OrderSchema = new Schema({
   status: {
     type: String,
     required: true,
-    enum: ['created', 'done'],
-    default: 'created',
+    enum: ["created", "done"],
+    default: "created",
   },
-  items: [{
-    quantity: {
-      type: Number,
-      required: true,
-      default: 1,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-    product: {
+  totalOrder: {
+    type: Number,
+    required: true,
+  },
+  items: [
+    {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Product',
+      ref: "Product",
+      required: true,
     },
-  }],
+  ],
 });
 
-const OrderModel = mongoose.model('Order', OrderSchema);
+const OrderModel = mongoose.model("Order", OrderSchema);
 
 module.exports = OrderModel;

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
@@ -10,10 +10,7 @@ const ProductSchema = new Schema({
   },
   slug: {
     type: String,
-    required: [true, 'O Slug é obrigatório'],
-    trim: true,
-    index: true,
-    unique: true,
+    required: true,
   },
   description: {
     type: String,
@@ -28,12 +25,14 @@ const ProductSchema = new Schema({
     required: true,
     default: true,
   },
-  tags: [{
-    type: String,
-    required: true,
-  }],
+  tags: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 });
 
-const ProductModel = mongoose.model('Product', ProductSchema);
+const ProductModel = mongoose.model("Product", ProductSchema);
 
 module.exports = ProductModel;

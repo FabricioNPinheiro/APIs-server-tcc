@@ -1,12 +1,12 @@
-const guid = require("guid");
 const repository = require("./orderRepository");
 
 exports.createNewOrder = async (req, res) => {
-  const { customer, items } = req.body;
+  const { customer, number, totalOrder, items } = req.body;
   try {
     await repository.createNewOrder({
       customer: customer,
-      number: guid.raw().substring(0, 6),
+      number: number,
+      totalOrder: totalOrder,
       items: items,
     });
 
