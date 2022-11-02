@@ -10,10 +10,8 @@ const ProductSchema = new Schema({
   },
   slug: {
     type: String,
-    required: [true, "O Slug é obrigatório"],
+    required: true,
     trim: true,
-    index: true,
-    unique: true,
   },
   description: {
     type: String,
@@ -28,12 +26,10 @@ const ProductSchema = new Schema({
     required: true,
     default: true,
   },
-  tags: [
-    {
+  tags: [{
       type: String,
       required: true,
-    },
-  ],
+    }],
 });
 
 export default mongoose.model("Product", ProductSchema);
